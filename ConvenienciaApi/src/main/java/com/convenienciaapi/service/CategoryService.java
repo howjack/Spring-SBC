@@ -2,6 +2,7 @@ package com.convenienciaapi.service;
 
 import com.convenienciaapi.model.persistence.Category;
 import com.convenienciaapi.model.transport.request.CreateCategoryRequestDTO;
+import com.convenienciaapi.model.transport.request.UpdateCategoryRequestDTO;
 import com.convenienciaapi.model.transport.response.FindCategoryResponseDTO;
 import com.convenienciaapi.model.transport.response.ListCategoryResponseDTO;
 import com.convenienciaapi.repository.CategoryRepository;
@@ -39,6 +40,32 @@ public class CategoryService implements CategoryServiceInterface{
         }
         throw new SQLException("Não existe essa Categoria");
 
+    }
+
+    public FindCategoryResponseDTO findByName(String name) throws SQLException {
+        Optional<Category> category = this.categoryRepository.findByNameLikeIgnoreCase(name);
+
+        if (category.isPresent()){
+            return new FindCategoryResponseDTO(category.get());
+        }
+        throw new SQLException("Não existe essa Categoria");
+
+    }
+
+    public void update(UpdateCategoryRequestDTO updateCategoryRequestDTO, UUID uuid) throws SQLException {
+        Optional<Category> category = this.categoryRepository.findByUuid(uuid);
+        if (category.isPresent()){
+            Category newCategory = category.get();
+            if (updateCategoryRequestDTO.getName() != null){
+                newCategory.setName(updateCategoryRequestDTO.getName());
+            }
+            if (updateCategoryRequestDTO.getIsActive() != null){
+                newCategory.setIsActive(updateCategoryRequestDTO.getIsActive());
+            }
+            this.categoryRepository.save(newCategory);
+        }else{
+            throw new SQLException("Não existe essa Categoria");
+        }
     }
 
     @Override

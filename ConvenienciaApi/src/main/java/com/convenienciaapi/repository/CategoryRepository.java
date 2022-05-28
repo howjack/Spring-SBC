@@ -17,4 +17,6 @@ public interface CategoryRepository extends PagingAndSortingRepository<Category,
     Page<Category> findAll(Pageable pageable);
 
     Optional<Category> findByUuid(UUID uuid);
+
+    Optional<Category> findByNameLikeIgnoreCase(String name);
 }

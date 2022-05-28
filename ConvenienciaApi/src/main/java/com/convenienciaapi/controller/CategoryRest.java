@@ -2,6 +2,7 @@ package com.convenienciaapi.controller;
 
 import com.convenienciaapi.model.persistence.Category;
 import com.convenienciaapi.model.transport.request.CreateCategoryRequestDTO;
+import com.convenienciaapi.model.transport.request.UpdateCategoryRequestDTO;
 import com.convenienciaapi.model.transport.response.FindCategoryResponseDTO;
 import com.convenienciaapi.model.transport.response.ListCategoryResponseDTO;
 import com.convenienciaapi.service.CategoryServiceInterface;
@@ -45,6 +46,17 @@ public class CategoryRest {
         } catch (SQLException e) {
             e.printStackTrace();
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/{uuid}")
+    public ResponseEntity<HttpStatus> update(@RequestBody UpdateCategoryRequestDTO updateCategoryRequestDTO, @PathVariable UUID uuid){
+        try {
+            this.categoryService.update(updateCategoryRequestDTO, uuid);
+            return ResponseEntity.ok().build();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().build();
         }
     }
 
