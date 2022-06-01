@@ -5,6 +5,7 @@ import com.sun.istack.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,7 +15,8 @@ import java.util.UUID;
 @Repository
 public interface CategoryRepository extends PagingAndSortingRepository<Category, Long> {
 
-    Page<Category> findAll(Pageable pageable);
+    @NonNull
+    Page<Category> findAll(@NonNull Pageable pageable);
 
     Optional<Category> findByUuid(UUID uuid);
 
