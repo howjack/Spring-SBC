@@ -1,6 +1,7 @@
 package com.convenienciaapi.model.persistence;
 
 import com.convenienciaapi.model.transport.request.CreateCategoryRequestDTO;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -25,9 +26,18 @@ public class Category {
 
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
-    private Set<Product> product;
+    @JsonManagedReference
+    private Set<Product> products;
 
     public Category() {
+    }
+
+    public Category(Long id, String name, UUID uuid, Boolean isActive, Set<Product> products) {
+        this.id = id;
+        this.name = name;
+        this.uuid = uuid;
+        this.isActive = isActive;
+        this.products = products;
     }
 
     public Category(String name, UUID uuid, Boolean isActive) {
@@ -68,6 +78,14 @@ public class Category {
 
     public void setIsActive(Boolean isActive) {
         this.isActive = isActive;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 
     @Override

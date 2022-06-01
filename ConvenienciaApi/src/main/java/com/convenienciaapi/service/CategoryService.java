@@ -79,7 +79,7 @@ public class CategoryService implements CategoryServiceInterface{
     public void delete(UUID uuid) throws SQLException {
         Optional<Category> category = this.categoryRepository.findByUuid(uuid);
         if (category.isEmpty()){
-            throw new SQLException("A categoria com esse uuid ja não existe");
+            throw new SQLException("A categoria com esse uuid não existe");
         }
 
         this.categoryRepository.delete(category.get());

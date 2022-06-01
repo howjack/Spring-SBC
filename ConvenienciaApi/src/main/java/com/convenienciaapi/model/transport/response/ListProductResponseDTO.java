@@ -1,16 +1,18 @@
 package com.convenienciaapi.model.transport.response;
 
 import com.convenienciaapi.model.persistence.Category;
+import com.convenienciaapi.model.persistence.Product;
 import com.convenienciaapi.model.transport.CategoryDTO;
+import com.convenienciaapi.model.transport.ProductDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ListCategoryResponseDTO {
+public class ListProductResponseDTO {
 
-    private List<CategoryDTO> content;
+    private List<ProductDTO> content;
 
     private Integer totalElements;
 
@@ -18,21 +20,28 @@ public class ListCategoryResponseDTO {
 
     private Pageable pageable;
 
-    public ListCategoryResponseDTO() {
+    public ListProductResponseDTO() {
     }
 
-    public ListCategoryResponseDTO(Page<Category> categoryPage) {
-        this.content = categoryPage.get().map(CategoryDTO::new).collect(Collectors.toList());
-        this.totalElements = categoryPage.getNumberOfElements();
-        this.totalPages = categoryPage.getTotalPages();
-        this.pageable = categoryPage.getPageable();
+    public ListProductResponseDTO(Page<Product> productPage) {
+        this.content = productPage.get().map(ProductDTO::new).collect(Collectors.toList());
+        this.totalElements = productPage.getNumberOfElements();
+        this.totalPages = productPage.getTotalPages();
+        this.pageable = productPage.getPageable();
     }
 
-    public List<CategoryDTO> getContent() {
+    public ListProductResponseDTO(List<ProductDTO> content, Integer totalElements, Integer totalPages, Pageable pageable) {
+        this.content = content;
+        this.totalElements = totalElements;
+        this.totalPages = totalPages;
+        this.pageable = pageable;
+    }
+
+    public List<ProductDTO> getContent() {
         return content;
     }
 
-    public void setContent(List<CategoryDTO> content) {
+    public void setContent(List<ProductDTO> content) {
         this.content = content;
     }
 
@@ -52,7 +61,6 @@ public class ListCategoryResponseDTO {
         this.totalPages = totalPages;
     }
 
-
     public Pageable getPageable() {
         return pageable;
     }
@@ -63,10 +71,10 @@ public class ListCategoryResponseDTO {
 
     @Override
     public String toString() {
-        return "ListCategoryResponseDTO{" +
+        return "ListProductResponseDTO{" +
                 "content=" + content +
                 ", totalElements=" + totalElements +
-                ", totalpages=" + totalPages +
+                ", totalPages=" + totalPages +
                 ", pageable=" + pageable +
                 '}';
     }
