@@ -14,7 +14,7 @@ public class ListCategoryResponseDTO {
 
     private Integer totalElements;
 
-    private Integer totalpages;
+    private Integer totalPages;
 
     private Pageable pageable;
 
@@ -24,7 +24,7 @@ public class ListCategoryResponseDTO {
     public ListCategoryResponseDTO(Page<Category> categoryPage) {
         this.content = categoryPage.get().map(CategoryDTO::new).collect(Collectors.toList());
         this.totalElements = categoryPage.getNumberOfElements();
-        this.totalpages = categoryPage.getTotalPages();
+        this.totalPages = categoryPage.getTotalPages();
         this.pageable = categoryPage.getPageable();
     }
 
@@ -44,12 +44,12 @@ public class ListCategoryResponseDTO {
         this.totalElements = totalElements;
     }
 
-    public Integer getTotalpages() {
-        return totalpages;
+    public Integer getTotalPages() {
+        return totalPages;
     }
 
-    public void setTotalpages(Integer totalpages) {
-        this.totalpages = totalpages;
+    public void setTotalPages(Integer totalPages) {
+        this.totalPages = totalPages;
     }
 
 
@@ -66,7 +66,7 @@ public class ListCategoryResponseDTO {
         return "ListCategoryResponseDTO{" +
                 "content=" + content +
                 ", totalElements=" + totalElements +
-                ", totalpages=" + totalpages +
+                ", totalpages=" + totalPages +
                 ", pageable=" + pageable +
                 '}';
     }
