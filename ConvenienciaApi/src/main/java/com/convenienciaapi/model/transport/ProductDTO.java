@@ -15,15 +15,18 @@ public class ProductDTO {
 
     private Boolean isActive;
 
+    private String category;
+
     public ProductDTO() {
     }
 
-    public ProductDTO(String name, BigDecimal price, Integer quantity, String barCode, Boolean isActive) {
+    public ProductDTO(String name, BigDecimal price, Integer quantity, String barCode, Boolean isActive, String category) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.barCode = barCode;
         this.isActive = isActive;
+        this.category = category;
     }
 
     public ProductDTO(Product product) {
@@ -32,6 +35,7 @@ public class ProductDTO {
         this.quantity = product.getQuantity();
         this.barCode = product.getBarCode();
         this.isActive = product.getIsActive();
+        this.category = product.getCategory().getName();
     }
 
     public String getName() {
@@ -74,6 +78,14 @@ public class ProductDTO {
         this.isActive = isActive;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return "ProductDTO{" +
@@ -82,6 +94,7 @@ public class ProductDTO {
                 ", quantity=" + quantity +
                 ", barCode='" + barCode + '\'' +
                 ", isActive=" + isActive +
+                ", category='" + category + '\'' +
                 '}';
     }
 }
