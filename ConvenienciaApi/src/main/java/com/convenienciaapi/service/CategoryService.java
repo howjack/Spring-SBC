@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.util.Optional;
@@ -52,6 +53,8 @@ public class CategoryService implements CategoryServiceInterface{
 
     }
 
+    @Override
+    @Transactional
     public void update(UpdateCategoryRequestDTO updateCategoryRequestDTO, UUID uuid) throws SQLException {
         Optional<Category> category = this.categoryRepository.findByUuid(uuid);
         if (category.isPresent()){
