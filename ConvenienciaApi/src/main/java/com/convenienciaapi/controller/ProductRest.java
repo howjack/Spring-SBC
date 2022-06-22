@@ -30,7 +30,7 @@ public class ProductRest {
     @PostMapping
     public ResponseEntity<Product> create(@RequestBody CreateProductRequestDTO createProductRequestDTO){
         try {
-            Product product = productService.create(createProductRequestDTO);
+            Product product = this.productService.create(createProductRequestDTO);
             return ResponseEntity.ok(product);
         } catch (SQLException e) {
             e.printStackTrace();

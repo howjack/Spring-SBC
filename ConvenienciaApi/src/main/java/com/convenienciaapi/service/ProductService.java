@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.util.Optional;
@@ -53,6 +54,7 @@ public class ProductService implements ProductServiceInterface{
 
     }
 
+    @Transactional
     @Override
     public void update(String barCode, UpdateProductRequestDTO updateProductRequestDTO) throws SQLException {
         Product product = this.productRepository.findByBarCode(barCode)
