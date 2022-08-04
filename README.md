@@ -1,6 +1,6 @@
 # Projeto_Conveniencia_Api
 
-## Sistema de loja de conveniência
+## Sistema de bar de conveniência
 
 ### Pré-requisitos
 
