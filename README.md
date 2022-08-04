@@ -40,5 +40,5 @@ $ git clone https://github.com/howjack/Projeto_Conveniencia_Api.git
     * Gerar cupom fiscal no pagamento - Temporariamente Paralizado
     * Diminuir quantidade do produto quando comprado - 	A Fazer
     * Usar mensageiria pra enfileirar pagamentos - 	A Fazer
-*Front
-   *Criar Front-End em vueJS com Quasar 
+* Front
+   * Criar Front-End em vueJS com Quasar 
